@@ -1,0 +1,116 @@
+Write a Python script that uploads all the feedback stored in this folder to the company's website, without having to turn it into a dictionary one by one.
+
+The script should follow the structure:
+
+ - List all .txt files under /data/feedback directory that contains the actual feedback to be displayed on the company's website.
+
+
+        *** Hint: Use os.listdir() method for this, which returns a list of all files and directories in the
+            specified path.
+
+
+ - You should now have a list that contains all of the feedback files from the path /data/feedback. Traverse
+    over each file and, from the contents of these text files, create a dictionary by keeping: title, name,
+    date, and feedback as keys for the content value, respectively.
+
+
+ - Now, you need to have a **dictionary** with keys and their respective values (content from feedback files).
+    This will be uploaded through the Django REST API.
+
+
+ - Use the Python **requests** module to post the dictionary to the company's website. Use the 'request.post()'
+    method to make a POST request to http://<corpweb-external-IP>/feedback. Replace <corpweb-external-IP> with
+    corpweb's external IP address.
+
+
+ - Make sure an error message isn't returned. You can print the status_code and text of the response objects to
+    check out what's going on. You can also use the response status_code '201' for created success status
+    response code that indicates the request has succeeded.
+
+
+student-02-eb3e660b788b@corpweb:~$ ./run.py
+Successful Post: You will find what you want here, status code: 201
+Successful Post: Best experience so far, status code: 201
+Successful Post: Waste of my time, status code: 201
+Successful Post: Great Customer Service, status code: 201
+Successful Post: Good deal for a 2015 RAV4, status code: 201
+student-02-eb3e660b788b@corpweb:~$
+
+
+HTTP 200 OK
+Allow: OPTIONS, POST, GET
+Content-Type: application/json
+Vary: Accept
+
+[
+    {
+        "id": 1,
+        "title": "Experienced salespeople",
+        "name": "Alex H.",
+        "date": "2020-02-02",
+        "feedback": "It was great to talk to the salespeople in the team, they understood my needs and were able to guide me in the right direction"
+    },
+    {
+        "id": 2,
+        "title": "You will find what you want here",
+        "name": "Tom",
+        "date": "2019-06-05",
+        "feedback": "I've being look around for a second handed Lexus RX for my family and this store happened to have a few of those. The experience was similar to most car dealers. The one I ended up buying has good condition and low mileage. I am pretty satisfied with the price they offered."
+    },
+    {
+        "id": 3,
+        "title": "Best experience so far",
+        "name": "Katie",
+        "date": "2019-12-09",
+        "feedback": "My friend recommended this place and  I decided to give a try. I called them beforehand and made sure they have the models I was looking for. They evenly sent me a bunch of photos and specs of the car I was looking for. One the day I visited, the sales person John helped me with test drive and showed me what I should be aware of when buying a used car. I felt like I learned a lot. They made the process so smooth that I saved a lot of time. It's the best car purchasing experience I had so far!"
+    },
+    {
+        "id": 4,
+        "title": "Waste of my time",
+        "name": "Anonymous",
+        "date": "2018-09-21",
+        "feedback": "I came in around 6pm and they seemed about to close the store. One of the sales seemed not being patient with me and made me feel like I have to either buy a car or come back later. Of course I didn't buy a car there. Hopefully they can treat every customer with more patience."
+    },
+    {
+        "id": 5,
+        "title": "Great Customer Service",
+        "name": "John",
+        "date": "2017-12-21",
+        "feedback": "The customer service here is very good. They helped me find a 2017 Camry with good condition in reasonable price. Campared to other dealers, they provided the lowest price. Definttely recommend!"
+    },
+    {
+        "id": 6,
+        "title": "Good deal for a 2015 RAV4",
+        "name": "Anonymous",
+        "date": "2018-04-17",
+        "feedback": "Called them to look for a second-hand RAV4 and they are very nice and patience to help me find me a few matches then scheduled an appointmet with me. Came in and they had everything ready for me. I was surprised how professional those sales are and they explained and answered all my questions. Ended up buying the car and been using it for more than a month now. Everything looks good!"
+    }
+
+
+
+Feedback Received
+Experienced salespeople
+Alex H. - Feb. 2, 2020
+It was great to talk to the salespeople in the team, they understood my needs and were able to guide me in the right direction
+
+You will find what you want here
+Tom - June 5, 2019
+I've being look around for a second handed Lexus RX for my family and this store happened to have a few of those. The experience was similar to most car dealers. The one I ended up buying has good condition and low mileage. I am pretty satisfied with the price they offered.
+
+Best experience so far
+Katie - Dec. 9, 2019
+My friend recommended this place and I decided to give a try. I called them beforehand and made sure they have the models I was looking for. They evenly sent me a bunch of photos and specs of the car I was looking for. One the day I visited, the sales person John helped me with test drive and showed me what I should be aware of when buying a used car. I felt like I learned a lot. They made the process so smooth that I saved a lot of time. It's the best car purchasing experience I had so far!
+
+Waste of my time
+Anonymous - Sept. 21, 2018
+I came in around 6pm and they seemed about to close the store. One of the sales seemed not being patient with me and made me feel like I have to either buy a car or come back later. Of course I didn't buy a car there. Hopefully they can treat every customer with more patience.
+
+Great Customer Service
+John - Dec. 21, 2017
+The customer service here is very good. They helped me find a 2017 Camry with good condition in reasonable price. Campared to other dealers, they provided the lowest price. Definttely recommend!
+
+Good deal for a 2015 RAV4
+Anonymous - April 17, 2018
+Called them to look for a second-hand RAV4 and they are very nice and patience to help me find me a few matches then scheduled an appointmet with me. Came in and they had everything ready for me. I was surprised how professional those sales are and they explained and answered all my questions. Ended up buying the car and been using it for more than a month now. Everything looks good!
+
+]
